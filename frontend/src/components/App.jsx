@@ -1,6 +1,5 @@
 // import modules
 import React, {useState, useContext, useEffect} from 'react';
-import GlobalContext from '../contexts/index.jsx';
 
 
 const App = () => {
