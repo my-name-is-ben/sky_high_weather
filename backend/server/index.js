@@ -15,7 +15,7 @@ app.use('/', express.static(__dirname + '/../../frontend/dist'));
 app.use(express.json());
 
 // get, post, delete request routing
-app.get('/api/noaa', controllers.getNOAAData);
+app.get('/api/noaa/:latLong', controllers.getNOAAData);
 
 // listen for get/post requests
 app.listen(PORT, () => {

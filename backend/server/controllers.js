@@ -8,7 +8,7 @@ const controllers = {
 
   getNOAAData(req, res) {
 
-    const {latLong} = req.body;
+    const {latLong} = req.params;
 
     axios
       .get(NOAA_url + `?airport=${latLong}&start=latest&n_hrs=1&data_source=Op40&fcst_len=shortest&`)
