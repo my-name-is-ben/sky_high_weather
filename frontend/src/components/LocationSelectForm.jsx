@@ -1,26 +1,32 @@
 // import modules
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
+import GlobalContext from '../contexts/index.jsx';
 import axios from 'axios';
 
 
 const LocationSelectForm = () => {
 
-  // state variables
-  const [latLong, setLatLong] = useState('');
+  // import state variables from context provider
+  const { setCurrentLatLong, setCurrentNOAAData } = useContext(GlobalContext);
+
+  // local state variables
+  const [latLongInput, setLatLongInput] = useState('');
 
   // handle coordinate input changes
-  const handleLatLongChange = () => {
-    setLatLong(event.target.value);
+  const handleLatLongInputChange = () => {
+    setLatLongInput(event.target.value);
   };
 
   // handle coordinate submit
-  const handleLatLongSubmit = () => {
-    console.log('you clicked submit: ', latLong);
+  const handleLatLongInputSubmit = () => {
+
+    setCurrentLatLong(latLongInput);
 
     axios
-      .get(`/api/noaa/${latLong}`)
+      .get(`/api/noaa/${latLongInput}`)
       .then (res => {
-        console.log(res.data);
+        setCurrentNOAAData(res.data);
+        setLatLongInput('');
       })
       .catch(err => {
         console.log('there was an error fetching NOAA data');
@@ -32,8 +38,11 @@ const LocationSelectForm = () => {
       <div>boulder: 40.0153,-105.2586</div>
       <label>
         Enter a coord:
-        <input type="text" value={latLong} onChange={handleLatLongChange}></input>
-        <button onClick={handleLatLongSubmit}>Submit</button>
+        <input type="text" value={latLongInput} onChange={handleLatLongInputChange} placeholder="ex: 40.0153,-105.2586"></input>
+        <button onClick={handleLatLongInputSubmit}>Submit</button>
+        <div>Not sure what your grid coordinates are? Try
+          <a href="https://www.latlong.net/" target="_blank"> latlong.net</a>
+        </div>
       </label>
 
 

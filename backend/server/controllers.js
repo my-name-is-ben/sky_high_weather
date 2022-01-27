@@ -11,7 +11,7 @@ const controllers = {
     const {latLong} = req.params;
 
     axios
-      .get(NOAA_url + `?airport=${latLong}&start=latest&n_hrs=2&data_source=Op40&fcst_len=shortest&`)
+      .get(NOAA_url + `?airport=${latLong}&start=latest&n_hrs=12&data_source=Op40&fcst_len=shortest&`)
       .then( (noaaRes) => {
 
         // for query format instructions, see:
