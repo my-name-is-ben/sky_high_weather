@@ -35,13 +35,12 @@ const LocationSelectForm = () => {
 
   return (
     <div>
-      <div>boulder: 40.0153,-105.2586</div>
       <label>
         Enter a coord:
         <input type="text" value={latLongInput} onChange={handleLatLongInputChange} placeholder="ex: 40.0153,-105.2586"></input>
         <button onClick={handleLatLongInputSubmit}>Submit</button>
         <div>Not sure what your grid coordinates are? Try
-          <a href="https://www.latlong.net/" target="_blank"> latlong.net</a>
+          <a href="https://www.google.com/maps/" target="_blank"> Google Maps</a>
         </div>
       </label>
 

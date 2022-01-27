@@ -3,6 +3,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import GlobalContext from '../contexts/index.jsx';
 import LocationSelectForm from './LocationSelectForm.jsx';
 import SoundingTableContainer from './SoundingTableContainer.jsx';
+import {google_maps_api_key} from '../../../backend/server/config.js';
 
 
 
@@ -335,7 +336,9 @@ const App = () => {
         { altitude: 6742, windDir: 273, windSpeed: 32 }
       ]
     },
-  ]
+  ];
+
+  let url = `https://maps.google.com/maps/embed/v1/place?key=${google_maps_api_key}&q=40.0153,-105.2586`;
 
 
 
@@ -353,6 +356,14 @@ const App = () => {
         currentNOAAData, setCurrentNOAAData,
       }}>
         <LocationSelectForm />
+
+
+        {/* This should be a separate component */}
+        <div className="embedContainer">
+          <iframe className="googleMapEmbed" src={url}></iframe>
+        </div>
+
+
         <SoundingTableContainer />
       </GlobalContext.Provider>
 

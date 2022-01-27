@@ -16,9 +16,13 @@ const SoundingTableContainer = () => {
     }
 
     for (let i = 0; i < currentNOAAData[0].weatherData.length; i++) {
+
+      let altitudeInFt = ((currentNOAAData[0].weatherData[i].altitude - currentNOAAData[0].weatherData[0].altitude) * 3.28084).toFixed(0);
+
       rowData.push(
         <tr key={i}>
-          <td>{`${currentNOAAData[0].weatherData[i].altitude} m`}</td>
+          {/* <td>{`${currentNOAAData[0].weatherData[i].altitude} m`}</td> */}
+          <td>{`${altitudeInFt} ft`}</td>
           <td>{`${currentNOAAData[0].weatherData[i].windDir}° @ ${currentNOAAData[0].weatherData[i].windSpeed}KTs`}</td>
           <td>{`${currentNOAAData[1].weatherData[i].windDir}° @ ${currentNOAAData[1].weatherData[i].windSpeed}KTs`}</td>
           <td>{`${currentNOAAData[2].weatherData[i].windDir}° @ ${currentNOAAData[2].weatherData[i].windSpeed}KTs`}</td>
@@ -41,7 +45,7 @@ const SoundingTableContainer = () => {
 
   // if no NOAA data has been retreived, return an empty div
   if (currentNOAAData.length === 0) {
-    return (<div></div>)
+    return (<div className></div>)
 
   // otherwise render the NOAA data
   } else {

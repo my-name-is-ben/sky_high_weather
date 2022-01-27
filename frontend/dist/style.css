@@ -4,6 +4,17 @@
   margin: 0 auto;
 }
 
+.googleMapEmbed {
+  width: 450px;
+  height: 250;
+  border:0;
+}
+
+.embedContainer {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
 
 /*
  ===============================================
